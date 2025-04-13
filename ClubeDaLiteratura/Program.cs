@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubeDaLiteratura;
+using System;
 
 namespace ClubeDaLeitura
 {
@@ -6,6 +7,9 @@ namespace ClubeDaLeitura
     {
         static void Main(string[] args)
         {
+            RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
+            TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo);
+
             bool continuar = true;
 
             while (continuar)
@@ -24,7 +28,7 @@ namespace ClubeDaLeitura
                 {
                     case "1":
                         Console.WriteLine(">>> Módulo de Amigos");
-
+                        telaAmigo.SubMenu();
                         break;
                     case "2":
                         Console.WriteLine(">>> Módulo de Caixas");
