@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLiteratura
+﻿namespace ClubeDaLiteratura.ModuloCaixa
 {
     public class Caixa
     {

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using ClubeDaLiteratura.Compartilhado;
+using System;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.ModuloCaixa
 {
     public class TelaCaixa
     {

@@ -1,5 +1,7 @@
-﻿using ClubeDaLiteratura;
-using ClubeDaLiteratura.ModuloAmigo;
+﻿using ClubeDaLiteratura.ModuloAmigo;
+using ClubeDaLiteratura.ModuloCaixa;
+using ClubeDaLiteratura.ModuloEmprestimo;
+using ClubeDaLiteratura.ModuloRevista;
 using System;
 
 namespace ClubeDaLeitura
@@ -9,10 +11,14 @@ namespace ClubeDaLeitura
         static void Main(string[] args)
         {
             RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
-            TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
-
             RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
-            TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo);
+            RepositorioRevista repositorioRevista = new RepositorioRevista();
+            RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
+
+            TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
+            TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
+            TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo);
+            TelaEmprestimo telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
 
             bool continuar = true;
 
@@ -31,20 +37,16 @@ namespace ClubeDaLeitura
                 switch (opcao)
                 {
                     case "1":
-                        Console.WriteLine(">>> Módulo de Amigos");
                         telaAmigo.SubMenu();
                         break;
                     case "2":
-                        Console.WriteLine(">>> Módulo de Caixas");
                         telaCaixa.SubMenu();
                         break;
                     case "3":
-                        Console.WriteLine(">>> Módulo de Revistas");
-
+                        telaRevista.SubMenu();
                         break;
                     case "4":
-                        Console.WriteLine(">>> Módulo de Empréstimos");
-
+                        telaEmprestimo.SubMenu();
                         break;
                     case "0":
                         continuar = false;

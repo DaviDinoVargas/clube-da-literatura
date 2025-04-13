@@ -1,14 +1,18 @@
-﻿using System;
+﻿using ClubeDaLiteratura.Compartilhado;
+using ClubeDaLiteratura.ModuloEmprestimo;
+using System;
 
 namespace ClubeDaLiteratura.ModuloAmigo
 {
     public class TelaAmigo
     {
         private RepositorioAmigo repositorio;
+        private RepositorioEmprestimo repositorioEmprestimo;
 
-        public TelaAmigo(RepositorioAmigo repositorio)
+        public TelaAmigo(RepositorioAmigo repositorio, RepositorioEmprestimo repositorioEmprestimo)
         {
             this.repositorio = repositorio;
+            this.repositorioEmprestimo = repositorioEmprestimo;
         }
 
         public void SubMenu()
@@ -33,6 +37,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
                     case "2": Editar(); break;
                     case "3": Excluir(); break;
                     case "4": VisualizarTodos(); break;
+                    case "5": VisualizarEmprestimos(); break;
                     case "s":
                     case "S": break;
                     default:
@@ -163,6 +168,52 @@ namespace ClubeDaLiteratura.ModuloAmigo
                 Console.Write("Tente novamente: ");
             }
             return valor;
+        }
+
+        public void VisualizarEmprestimos()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Empréstimos por Amigo ===\n");
+
+            VisualizarTodos(false);
+
+            Console.Write("\nDigite o ID do amigo para ver os empréstimos: ");
+            int id = LerInteiro();
+
+            Amigo amigo = repositorio.SelecionarPorId(id);
+
+            if (amigo == null)
+            {
+                Notificador.ExibirMensagemErro("Amigo não encontrado!");
+                return;
+            }
+
+            var emprestimos = repositorioEmprestimo.SelecionarEmprestimosPorAmigo(id);
+
+            if (emprestimos.Length == 0 || emprestimos.All(e => e == null))
+            {
+                Notificador.ExibirMensagemAviso("Esse amigo não possui empréstimos.");
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine($"\nEmpréstimos do amigo: {amigo.Nome}");
+            Console.WriteLine("{0,-5} | {1,-25} | {2,-12} | {3,-12} | {4,-10}",
+                "ID", "Revista", "Data Saída", "Devolução", "Situação");
+            Console.WriteLine("--------------------------------------------------------------------");
+
+            foreach (var e in emprestimos)
+            {
+                if (e == null) continue;
+
+                string dataSaida = e.DataEmprestimo.ToShortDateString();
+                string dataDev = e.ObterDataDevolucao().ToShortDateString();
+
+                Console.WriteLine("{0,-5} | {1,-25} | {2,-12} | {3,-12} | {4,-10}",
+                    e.Id, e.Revista.Titulo, dataSaida, dataDev, e.Situacao);
+            }
+
+            Console.ReadLine();
         }
     }
 }

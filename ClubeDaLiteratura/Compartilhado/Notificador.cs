@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.Compartilhado
 {
     public static class Notificador
     {
