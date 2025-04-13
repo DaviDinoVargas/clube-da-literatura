@@ -1,4 +1,5 @@
 ﻿using ClubeDaLiteratura;
+using ClubeDaLiteratura.ModuloAmigo;
 using System;
 
 namespace ClubeDaLeitura
@@ -7,6 +8,9 @@ namespace ClubeDaLeitura
     {
         static void Main(string[] args)
         {
+            RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+            TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
+
             RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
             TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo);
 
@@ -32,7 +36,7 @@ namespace ClubeDaLeitura
                         break;
                     case "2":
                         Console.WriteLine(">>> Módulo de Caixas");
-
+                        telaCaixa.SubMenu();
                         break;
                     case "3":
                         Console.WriteLine(">>> Módulo de Revistas");

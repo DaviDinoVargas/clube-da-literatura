@@ -1,7 +1,6 @@
 ﻿using System;
-using ClubeDaLiteratura;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.ModuloAmigo
 {
     public class TelaAmigo
     {
@@ -30,10 +29,10 @@ namespace ClubeDaLiteratura
 
                 switch (opcao)
                 {
-                    case "1": CadastrarAmigo(); break;
-                    case "2": EditarAmigo(); break;
-                    case "3": ExcluirAmigo(); break;
-                    case "4": VisualizarAmigos(); break;
+                    case "1": Inserir(); break;
+                    case "2": Editar(); break;
+                    case "3": Excluir(); break;
+                    case "4": VisualizarTodos(); break;
                     case "s":
                     case "S": break;
                     default:
@@ -43,7 +42,7 @@ namespace ClubeDaLiteratura
             } while (opcao.ToUpper() != "S");
         }
 
-        public void CadastrarAmigo()
+        public void Inserir()
         {
             Console.Clear();
             Console.WriteLine("=== Cadastro de Amigo ===\n");
@@ -72,11 +71,11 @@ namespace ClubeDaLiteratura
                 Notificador.ExibirMensagemErro("Já existe um amigo com este nome e telefone.");
         }
 
-        public void EditarAmigo()
+        public void Editar()
         {
             Console.Clear();
             Console.WriteLine("=== Edição de Amigo ===\n");
-            VisualizarAmigos(false);
+            VisualizarTodos(false);
 
             Console.Write("\nDigite o ID do amigo que deseja editar: ");
             int id = LerInteiro();
@@ -115,11 +114,11 @@ namespace ClubeDaLiteratura
             Notificador.ExibirMensagemSucesso("Amigo editado com sucesso!");
         }
 
-        public void ExcluirAmigo()
+        public void Excluir()
         {
             Console.Clear();
             Console.WriteLine("=== Exclusão de Amigo ===\n");
-            VisualizarAmigos(false);
+            VisualizarTodos(false);
 
             Console.Write("\nDigite o ID do amigo que deseja excluir: ");
             int id = LerInteiro();
@@ -130,7 +129,7 @@ namespace ClubeDaLiteratura
                 Notificador.ExibirMensagemErro("Amigo não encontrado!");
         }
 
-        public void VisualizarAmigos(bool pausa = true)
+        public void VisualizarTodos(bool pausa = true)
         {
             Console.WriteLine("\nLista de Amigos:");
             Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3,-15}", "ID", "Nome", "Responsável", "Telefone");

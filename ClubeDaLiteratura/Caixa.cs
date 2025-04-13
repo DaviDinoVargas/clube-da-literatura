@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClubeDaLiteratura
+﻿namespace ClubeDaLiteratura
 {
     public class Caixa
     {
@@ -21,19 +15,21 @@ namespace ClubeDaLiteratura
             DiasEmprestimo = diasEmprestimo;
         }
 
-        public void Validar()
+        public string Validar()
         {
-            
+            if (string.IsNullOrWhiteSpace(Etiqueta))
+                return "O campo 'Etiqueta' é obrigatório.";
+
+            if (string.IsNullOrWhiteSpace(Cor))
+                return "O campo 'Cor' é obrigatório.";
+
+            if (DiasEmprestimo <= 0)
+                return "O campo 'Dias de Empréstimo' deve ser maior que zero.";
+
+            return "";
         }
 
-        public void AdicionarRevista()
-        {
-            
-        }
-
-        public void RemoverRevista()
-        {
-            
-        }
+        public void AdicionarRevista() { }
+        public void RemoverRevista() { }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.ModuloAmigo
 {
     public class Amigo
     {
@@ -32,7 +32,7 @@ namespace ClubeDaLiteratura
             if (string.IsNullOrWhiteSpace(Telefone))
                 return "O campo 'Telefone' é obrigatório.";
 
-            return ""; // válido
+            return "";
         }
 
         public void ObterEmprestimos()

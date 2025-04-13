@@ -1,4 +1,4 @@
-﻿using ClubeDaLiteratura;
+﻿using ClubeDaLiteratura.ModuloAmigo;
 
 public class RepositorioAmigo
 {
@@ -10,7 +10,7 @@ public class RepositorioAmigo
         foreach (Amigo a in amigos)
         {
             if (a != null && a.Validar() == novoAmigo.Validar())
-                return false; // já existe amigo com mesmo nome e telefone
+                return false;
         }
 
         amigos[contador++] = novoAmigo;
