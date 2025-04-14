@@ -97,6 +97,21 @@ Automatizar a gestão do clube de leitura de Gustavo:
 
 ---
 
+## 💻 Exemplo de Execução:  
+
+# Amigos
+![](https://i.imgur.com/AF0sG7y.gif)
+# Caixas
+![](https://i.imgur.com/yOEfJMA.gif)
+# Revistas
+![](https://i.imgur.com/sF45NXG.gif)
+# Empréstimos
+![](https://i.imgur.com/zKICSz6.gif)
+# Reservas
+![](https://i.imgur.com/brQUiaj.gif)
+
+---
+
 ## 🧪 Validações
 
 - Formato de telefone
