@@ -1,6 +1,7 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
 using ClubeDaLiteratura.ModuloAmigo;
 using ClubeDaLiteratura.ModuloRevista;
+using ClubeDaLiteratura.Validadores;
 using System;
 
 namespace ClubeDaLiteratura.ModuloEmprestimo
@@ -48,9 +49,16 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
             Console.Clear();
             Console.WriteLine("=== Novo Empréstimo ===");
 
+            if (!Validador.ExistemAmigosCadastrados(repositorioAmigo))
+            {
+                Notificador.ExibirMensagemErro("Nenhum amigo cadastrado. Cadastre um amigo antes de registrar um empréstimo.");
+                return;
+            }
+
             VisualizarAmigos();
             Console.Write("ID do Amigo: ");
-            int idAmigo = int.Parse(Console.ReadLine());
+            int idAmigo = Validador.LerInteiro();
+
             Amigo amigo = repositorioAmigo.SelecionarPorId(idAmigo);
 
             if (amigo == null)
@@ -61,7 +69,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
 
             VisualizarRevistas();
             Console.Write("ID da Revista: ");
-            int idRevista = int.Parse(Console.ReadLine());
+            int idRevista = Validador.LerInteiro(Console.ReadLine());
             Revista revista = repositorioRevista.SelecionarPorId(idRevista);
 
             if (revista == null)
@@ -89,7 +97,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         {
             VisualizarTodos(false);
             Console.Write("Digite o ID do empréstimo que deseja editar: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = Validador.LerInteiro(Console.ReadLine());
 
             Emprestimo emprestimoAtual = repositorio.SelecionarPorId(id);
 
@@ -172,7 +180,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         {
             VisualizarTodos(false);
             Console.Write("Digite o ID do empréstimo: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = Validador.LerInteiro(Console.ReadLine());
 
             Emprestimo emp = repositorio.SelecionarPorId(id);
 

@@ -1,5 +1,6 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
 using ClubeDaLiteratura.ModuloEmprestimo;
+using ClubeDaLiteratura.Validadores;
 using System;
 
 namespace ClubeDaLiteratura.ModuloAmigo
@@ -83,7 +84,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
             VisualizarTodos(false);
 
             Console.Write("\nDigite o ID do amigo que deseja editar: ");
-            int id = LerInteiro();
+            int id = Validador.LerInteiro();
 
             Amigo amigoAtual = repositorio.SelecionarPorId(id);
 
@@ -126,7 +127,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
             VisualizarTodos(false);
 
             Console.Write("\nDigite o ID do amigo que deseja excluir: ");
-            int id = LerInteiro();
+            int id = Validador.LerInteiro();
 
             if (repositorio.ExcluirAmigo(id))
                 Notificador.ExibirMensagemSucesso("Amigo excluído com sucesso!");
@@ -158,18 +159,6 @@ namespace ClubeDaLiteratura.ModuloAmigo
 
             if (pausa) Console.ReadLine();
         }
-
-        private int LerInteiro()
-        {
-            int valor;
-            while (!int.TryParse(Console.ReadLine(), out valor))
-            {
-                Notificador.ExibirMensagemErro("Digite um número válido!");
-                Console.Write("Tente novamente: ");
-            }
-            return valor;
-        }
-
         public void VisualizarEmprestimos()
         {
             Console.Clear();
@@ -178,7 +167,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
             VisualizarTodos(false);
 
             Console.Write("\nDigite o ID do amigo para ver os empréstimos: ");
-            int id = LerInteiro();
+            int id = Validador.LerInteiro();
 
             Amigo amigo = repositorio.SelecionarPorId(id);
 

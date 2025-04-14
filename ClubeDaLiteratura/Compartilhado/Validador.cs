@@ -1,4 +1,5 @@
-﻿using ClubeDaLiteratura.ModuloCaixa;
+﻿using ClubeDaLiteratura.Compartilhado;
+using ClubeDaLiteratura.ModuloCaixa;
 using ClubeDaLiteratura.ModuloRevista;
 
 namespace ClubeDaLiteratura.Validadores
@@ -26,6 +27,31 @@ namespace ClubeDaLiteratura.Validadores
             foreach (var caixa in caixas)
             {
                 if (caixa != null)
+                    return true;
+            }
+
+            return false;
+        }
+        public static int LerInteiro(string mensagem = "Digite um número: ")
+        {
+            int valor;
+
+            Console.Write(mensagem);
+            while (!int.TryParse(Console.ReadLine(), out valor))
+            {
+                Notificador.ExibirMensagemErro("Digite um número válido!");
+                Console.Write("Tente novamente: ");
+            }
+
+            return valor;
+        }
+        public static bool ExistemAmigosCadastrados(RepositorioAmigo repositorioAmigo)
+        {
+            var amigos = repositorioAmigo.SelecionarTodos();
+
+            foreach (var amigo in amigos)
+            {
+                if (amigo != null)
                     return true;
             }
 

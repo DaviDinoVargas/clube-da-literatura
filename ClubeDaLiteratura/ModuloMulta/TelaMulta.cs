@@ -1,4 +1,5 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
+using ClubeDaLiteratura.Validadores;
 using System;
 using System.Linq;
 
@@ -89,7 +90,7 @@ namespace ClubeDaLiteratura
             }
 
             Console.Write("\nDigite o ID do amigo: ");
-            int id = int.Parse(Console.ReadLine()!);
+            int id = Validador.LerInteiro(Console.ReadLine()!);
 
             var amigoSelecionado = repositorioAmigo.SelecionarPorId(id);
             if (amigoSelecionado == null)
@@ -143,7 +144,7 @@ namespace ClubeDaLiteratura
             VisualizarTodas();
 
             Console.Write("\nDigite o ID da multa a quitar: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = Validador.LerInteiro(Console.ReadLine());
 
             Multa multa = repositorioMulta.SelecionarPorId(id);
 

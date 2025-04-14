@@ -85,7 +85,7 @@ namespace ClubeDaLiteratura.ModuloCaixa
             VisualizarTodos(false);
 
             Console.Write("\nDigite o ID da caixa que deseja editar: ");
-            int id = LerInteiro();
+            int id = Validador.LerInteiro();
 
             Caixa atual = repositorio.SelecionarPorId(id);
             if (atual == null)
@@ -134,7 +134,7 @@ namespace ClubeDaLiteratura.ModuloCaixa
             VisualizarTodos(false);
 
             Console.Write("\nDigite o ID da caixa que deseja excluir: ");
-            int id = LerInteiro();
+            int id = Validador.LerInteiro();
 
             if (!Validador.CaixaPodeSerExcluida(id, repositorioRevista))
             {
@@ -161,16 +161,6 @@ namespace ClubeDaLiteratura.ModuloCaixa
             }
 
             if (pausa) Console.ReadLine();
-        }
-        private int LerInteiro()
-        {
-            int valor;
-            while (!int.TryParse(Console.ReadLine(), out valor))
-            {
-                Notificador.ExibirMensagemErro("Digite um número válido!");
-                Console.Write("Tente novamente: ");
-            }
-            return valor;
         }
     }
 }
