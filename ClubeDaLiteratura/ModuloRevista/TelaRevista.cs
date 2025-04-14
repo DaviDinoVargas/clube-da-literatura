@@ -1,5 +1,6 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
 using ClubeDaLiteratura.ModuloCaixa;
+using ClubeDaLiteratura.Validadores;
 using System;
 
 namespace ClubeDaLiteratura.ModuloRevista
@@ -44,6 +45,12 @@ namespace ClubeDaLiteratura.ModuloRevista
         {
             Console.WriteLine("== Cadastro de Revista ==");
 
+            if (!Validador.ExistemCaixasCadastradas(repositorioCaixa))
+            {
+                Notificador.ExibirMensagemErro("Nenhuma caixa cadastrada. Cadastre uma caixa antes de adicionar revistas.");
+                return;
+            }
+
             Console.Write("Título: ");
             string titulo = Console.ReadLine();
             Console.Write("Número da Edição: ");
@@ -67,6 +74,7 @@ namespace ClubeDaLiteratura.ModuloRevista
             }
 
             repositorio.Inserir(revista);
+            caixa.AdicionarRevista(revista);
             Notificador.ExibirMensagemSucesso("Revista cadastrada com sucesso!");
         }
 
@@ -105,6 +113,12 @@ namespace ClubeDaLiteratura.ModuloRevista
                 ? atual.CaixaOrigem
                 : repositorioCaixa.SelecionarPorId(int.Parse(idCaixaStr));
 
+            if (atual.CaixaOrigem != caixa)
+            {
+                atual.CaixaOrigem.RemoverRevista(atual);
+                caixa.AdicionarRevista(atual);
+            }
+
             Revista atualizada = new Revista(id, titulo, edicao, ano, caixa)
             {
                 StatusEmprestimo = atual.StatusEmprestimo
@@ -130,10 +144,20 @@ namespace ClubeDaLiteratura.ModuloRevista
             Console.Write("\nDigite o ID da revista que deseja excluir: ");
             int id = LerInteiro();
 
+            Revista revista = repositorio.SelecionarPorId(id);
+
+            if (revista == null)
+            {
+                Notificador.ExibirMensagemErro("Revista não encontrada.");
+                return;
+            }
+
+            revista.CaixaOrigem.RemoverRevista(revista);
+
             if (repositorio.Excluir(id))
                 Notificador.ExibirMensagemSucesso("Revista excluída.");
             else
-                Notificador.ExibirMensagemErro("Revista não encontrada.");
+                Notificador.ExibirMensagemErro("Erro ao excluir a revista.");
         }
 
         public void VisualizarTodos(bool pausa = true)

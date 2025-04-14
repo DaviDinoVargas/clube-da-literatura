@@ -1,4 +1,6 @@
-﻿namespace ClubeDaLiteratura.ModuloCaixa
+﻿using ClubeDaLiteratura.ModuloRevista;
+
+namespace ClubeDaLiteratura.ModuloCaixa
 {
     public class Caixa
     {
@@ -6,6 +8,9 @@
         public string Etiqueta;
         public string Cor;
         public int DiasEmprestimo;
+
+        public Revista[] Revistas = new Revista[100];
+        private int contadorRevistas = 0;
 
         public Caixa(int id, string etiqueta, string cor, int diasEmprestimo)
         {
@@ -31,7 +36,28 @@
             return erros;
         }
 
-        public void AdicionarRevista() { }
-        public void RemoverRevista() { }
+        public void AdicionarRevista(Revista revista)
+        {
+            if (contadorRevistas >= Revistas.Length)
+                return;
+
+            Revistas[contadorRevistas++] = revista;
+        }
+
+        public void RemoverRevista(Revista revista)
+        {
+            for (int i = 0; i < contadorRevistas; i++)
+            {
+                if (Revistas[i] == revista)
+                {
+                    for (int j = i; j < contadorRevistas - 1; j++)
+                        Revistas[j] = Revistas[j + 1];
+
+                    Revistas[contadorRevistas - 1] = null;
+                    contadorRevistas--;
+                    break;
+                }
+            }
+        }
     }
 }

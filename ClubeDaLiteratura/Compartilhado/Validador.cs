@@ -19,5 +19,18 @@ namespace ClubeDaLiteratura.Validadores
 
             return true; 
         }
+        public static bool ExistemCaixasCadastradas(RepositorioCaixa repositorioCaixa)
+        {
+            Caixa[] caixas = repositorioCaixa.SelecionarTodos();
+
+            foreach (var caixa in caixas)
+            {
+                if (caixa != null)
+                    return true;
+            }
+
+            return false;
+        }
     }
+
 }
