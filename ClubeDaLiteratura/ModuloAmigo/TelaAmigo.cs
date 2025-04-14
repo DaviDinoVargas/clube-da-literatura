@@ -188,7 +188,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
                 return;
             }
 
-            var emprestimos = repositorioEmprestimo.SelecionarEmprestimosPorAmigo(id);
+            var emprestimos = amigo.ObterEmprestimos(repositorioEmprestimo);
 
             if (emprestimos.Length == 0 || emprestimos.All(e => e == null))
             {

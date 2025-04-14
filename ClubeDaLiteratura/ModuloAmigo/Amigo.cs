@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubeDaLiteratura.ModuloEmprestimo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace ClubeDaLiteratura.ModuloAmigo
         public string Responsavel;
         public string Telefone;
 
+        public Emprestimo[] ObterEmprestimos(RepositorioEmprestimo repositorioEmprestimo)
+        {
+            return repositorioEmprestimo.SelecionarEmprestimosPorAmigo(this.Id);
+        }
         public Amigo(int id, string nome, string responsavel, string telefone)
         {
             Id = id;
@@ -33,11 +38,6 @@ namespace ClubeDaLiteratura.ModuloAmigo
                 return "O campo 'Telefone' é obrigatório.";
 
             return "";
-        }
-
-        public void ObterEmprestimos()
-        {
-            
         }
     }
 }
