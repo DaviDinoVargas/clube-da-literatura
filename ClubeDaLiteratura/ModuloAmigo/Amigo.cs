@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClubeDaLiteratura.ModuloAmigo
@@ -28,14 +29,20 @@ namespace ClubeDaLiteratura.ModuloAmigo
 
         public string Validar()
         {
+ 
             if (string.IsNullOrWhiteSpace(Nome) || Nome.Length < 3)
                 return "O campo 'Nome' é obrigatório e precisa conter ao menos 3 caracteres.";
 
-            if (string.IsNullOrWhiteSpace(Responsavel))
-                return "O campo 'Responsável' é obrigatório.";
+ 
+            if (string.IsNullOrWhiteSpace(Responsavel) || Responsavel.Length < 3)
+                return "O campo 'Responsável' é obrigatório e precisa conter ao menos 3 caracteres.";
 
             if (string.IsNullOrWhiteSpace(Telefone))
                 return "O campo 'Telefone' é obrigatório.";
+
+            var regexTelefone = new Regex(@"^\(\d{2}\) \d{4,5}-\d{4}$");
+            if (!regexTelefone.IsMatch(Telefone))
+                return "O campo 'Telefone' deve seguir o formato: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX.";
 
             return "";
         }
