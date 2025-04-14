@@ -17,16 +17,18 @@
 
         public string Validar()
         {
-            if (string.IsNullOrWhiteSpace(Etiqueta))
-                return "O campo 'Etiqueta' é obrigatório.";
+            string erros = "";
+
+            if (string.IsNullOrWhiteSpace(Etiqueta) || Etiqueta.Length < 2)
+                erros += "O campo 'Etiqueta' é obrigatório e deve ter pelo menos 2 caracteres.\n";
 
             if (string.IsNullOrWhiteSpace(Cor))
-                return "O campo 'Cor' é obrigatório.";
+                erros += "O campo 'Cor' é obrigatório.\n";
 
             if (DiasEmprestimo <= 0)
-                return "O campo 'Dias de Empréstimo' deve ser maior que zero.";
+                erros += "O campo 'Dias de Empréstimo' deve ser maior que zero.\n";
 
-            return "";
+            return erros;
         }
 
         public void AdicionarRevista() { }

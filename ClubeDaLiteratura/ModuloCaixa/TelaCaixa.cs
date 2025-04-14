@@ -39,34 +39,49 @@ namespace ClubeDaLiteratura.ModuloCaixa
 
         public void Inserir()
         {
-            Console.Write("Etiqueta: ");
-            string etiqueta = Console.ReadLine();
-            Console.Write("Cor: ");
-            string cor = Console.ReadLine();
-            Console.Write("Dias de Empréstimo: ");
-            int dias = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("=== Cadastro de Caixa ===\n");
 
-            int id = GeradorId.GerarIdCaixa();
-            Caixa nova = new Caixa(id, etiqueta, cor, dias);
+            Console.Write("Etiqueta: ");
+            string etiqueta = Console.ReadLine()!;
+
+            Console.Write("Cor: ");
+            string cor = Console.ReadLine()!;
+
+            Console.Write("Dias de Empréstimo: ");
+            string entradaDias = Console.ReadLine()!;
+
+            if (!int.TryParse(entradaDias, out int diasEmprestimo))
+            {
+                Notificador.ExibirMensagemErro("O campo 'Dias de Empréstimo' deve conter um número válido.");
+                return;
+            }
+
+            int novoId = GeradorId.GerarIdCaixa();
+            Caixa nova = new Caixa(novoId, etiqueta, cor, diasEmprestimo);
 
             string erro = nova.Validar();
+
             if (erro != "")
             {
                 Notificador.ExibirMensagemErro(erro);
                 return;
             }
 
-            if(repositorio.Inserir(nova))
-                Notificador.ExibirMensagemSucesso("Caixa cadastrada!");
+            if (repositorio.Inserir(nova))
+                Notificador.ExibirMensagemSucesso("Caixa cadastrada com sucesso!");
             else
-                Notificador.ExibirMensagemErro("Erro");
+                Notificador.ExibirMensagemErro("Erro ao cadastrar a caixa.");
         }
 
         public void Editar()
         {
+            Console.Clear();
+            Console.WriteLine("=== Edição de Caixa ===\n");
             VisualizarTodos(false);
-            Console.Write("ID da caixa a editar: ");
-            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("\nDigite o ID da caixa que deseja editar: ");
+            int id = LerInteiro();
 
             Caixa atual = repositorio.SelecionarPorId(id);
             if (atual == null)
@@ -109,9 +124,13 @@ namespace ClubeDaLiteratura.ModuloCaixa
 
         public void Excluir()
         {
+
+            Console.Clear();
+            Console.WriteLine("=== Exclusão de Caixa ===\n");
             VisualizarTodos(false);
-            Console.Write("ID da caixa a excluir: ");
-            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("\nDigite o ID da caixa que deseja excluir: ");
+            int id = LerInteiro();
 
             if (repositorio.Excluir(id))
                 Notificador.ExibirMensagemSucesso("Caixa excluída.");
@@ -132,6 +151,16 @@ namespace ClubeDaLiteratura.ModuloCaixa
             }
 
             if (pausa) Console.ReadLine();
+        }
+        private int LerInteiro()
+        {
+            int valor;
+            while (!int.TryParse(Console.ReadLine(), out valor))
+            {
+                Notificador.ExibirMensagemErro("Digite um número válido!");
+                Console.Write("Tente novamente: ");
+            }
+            return valor;
         }
     }
 }
