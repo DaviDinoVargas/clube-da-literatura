@@ -72,9 +72,12 @@ namespace ClubeDaLiteratura.ModuloRevista
 
         public void Editar()
         {
+            Console.Clear();
+            Console.WriteLine("=== Edição de Revista ===\n");
             VisualizarTodos(false);
-            Console.Write("ID da revista para editar: ");
-            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("\nDigite a ID da Revista que deseja editar: ");
+            int id = LerInteiro();
 
             Revista atual = repositorio.SelecionarPorId(id);
             if (atual == null)
@@ -120,9 +123,12 @@ namespace ClubeDaLiteratura.ModuloRevista
 
         public void Excluir()
         {
+            Console.Clear();
+            Console.WriteLine("=== Exclusão de Revistas ===\n");
             VisualizarTodos(false);
-            Console.Write("ID da revista para excluir: ");
-            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("\nDigite o ID da revista que deseja excluir: ");
+            int id = LerInteiro();
 
             if (repositorio.Excluir(id))
                 Notificador.ExibirMensagemSucesso("Revista excluída.");
@@ -145,7 +151,16 @@ namespace ClubeDaLiteratura.ModuloRevista
 
             if (pausa) Console.ReadLine();
         }
-
+        private int LerInteiro()
+        {
+            int valor;
+            while (!int.TryParse(Console.ReadLine(), out valor))
+            {
+                Notificador.ExibirMensagemErro("Digite um número válido!");
+                Console.Write("Tente novamente: ");
+            }
+            return valor;
+        }
         public void VisualizarCaixas(bool pausa = true)
         {
             var caixas = repositorioCaixa.SelecionarTodos();
@@ -160,5 +175,6 @@ namespace ClubeDaLiteratura.ModuloRevista
 
             if (pausa) Console.ReadLine();
         }
+        
     }
 }
