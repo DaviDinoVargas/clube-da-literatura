@@ -13,6 +13,7 @@ namespace ClubeDaLiteratura.Compartilhado
         private static int IdCaixas = 0;
         private static int IdRevistas = 0;
         private static int IdEmprestimo = 0;
+        private static int IdReserva = 0;
 
         public static int GerarIdAmigo()
         {
@@ -31,6 +32,10 @@ namespace ClubeDaLiteratura.Compartilhado
         public static int GerarIdEmprestimo()
         {
             return ++IdEmprestimo;
+        }
+        public static int GerarIdReserva()
+        {
+            return IdReserva++;
         }
     }
 }

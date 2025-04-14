@@ -98,6 +98,18 @@ namespace ClubeDaLiteratura.Validadores
 
             return true; 
         }
+        public static bool ExisteRevistaDisponivelParaReserva(RepositorioRevista repositorioRevista)
+        {
+            var revistas = repositorioRevista.SelecionarTodos();
+
+            foreach (var revista in revistas)
+            {
+                if (revista != null && revista.StatusEmprestimo == "Disponível")
+                    return true;
+            }
+
+            return false;
+        }
     }
 
 }

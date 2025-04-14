@@ -46,5 +46,17 @@ namespace ClubeDaLiteratura.ModuloAmigo
 
             return "";
         }
+        public bool TemMultaPendente(RepositorioMulta repositorioMulta)
+        {
+            var multas = repositorioMulta.SelecionarMultasPorAmigo(this.Id);
+
+            foreach (var multa in multas)
+            {
+                if (multa != null && !multa.Quitada)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -22,10 +22,10 @@ namespace ClubeDaLiteratura
             Multa[] resultado = new Multa[100];
             int pos = 0;
 
-            foreach (var m in multas)
+            foreach (var multa in multas)
             {
-                if (m != null && m.Amigo.Id == idAmigo)
-                    resultado[pos++] = m;
+                if (multa != null && multa.Amigo.Id == idAmigo)
+                    resultado[pos++] = multa;
             }
 
             return resultado;
@@ -33,15 +33,15 @@ namespace ClubeDaLiteratura
 
         public bool ExisteMultaParaEmprestimo(int idEmprestimo)
         {
-            return multas.Any(m => m != null && m.Emprestimo.Id == idEmprestimo);
+            return multas.Any(multa => multa != null && multa.Emprestimo.Id == idEmprestimo);
         }
 
         public Multa SelecionarPorId(int id)
         {
-            foreach (var m in multas)
+            foreach (var multa in multas)
             {
-                if (m != null && m.Id == id)
-                    return m;
+                if (multa != null && multa.Id == id)
+                    return multa;
             }
             return null;
         }

@@ -16,6 +16,7 @@ namespace ClubeDaLeitura
             RepositorioRevista repositorioRevista = new RepositorioRevista();
             RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
             RepositorioMulta repositorioMulta = new RepositorioMulta();
+            RepositorioReserva repositorioReserva = new RepositorioReserva();
 
 
             TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo, repositorioMulta);
@@ -23,6 +24,7 @@ namespace ClubeDaLeitura
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
             TelaMulta telaMulta = new TelaMulta(repositorioMulta, repositorioAmigo);
+            TelaReserva telaReserva = new TelaReserva(repositorioReserva, repositorioAmigo, repositorioRevista, repositorioMulta);
 
             bool continuar = true;
 
@@ -35,6 +37,7 @@ namespace ClubeDaLeitura
                 Console.WriteLine("3. Gerenciar Revistas");
                 Console.WriteLine("4. Gerenciar Empréstimos");
                 Console.WriteLine("5. Gerenciar Multas");
+                Console.WriteLine("6. Gerenciar Reservas");
                 Console.WriteLine("0. Sair");
                 Console.Write("Escolha uma opção: ");
                 string opcao = Console.ReadLine();
@@ -55,6 +58,9 @@ namespace ClubeDaLeitura
                         break;
                     case "5":
                         telaMulta.SubMenu();
+                        break;
+                    case "6":
+                        telaReserva.SubMenu();
                         break;
                     case "0":
                         continuar = false;
