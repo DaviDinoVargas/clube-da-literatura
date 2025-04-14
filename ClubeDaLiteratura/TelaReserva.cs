@@ -128,6 +128,15 @@ namespace ClubeDaLiteratura
                 return;
             }
 
+            foreach (var r in reservas)
+            {
+                if (Validador.ReservaExpirada(r))
+                {
+                    r.Status = "Expirada";
+                    r.Revista.StatusEmprestimo = "Disponível";
+                }
+            }
+
             Console.WriteLine("\nReservas Ativas:");
             Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3}", "ID", "Amigo", "Revista", "Data");
 

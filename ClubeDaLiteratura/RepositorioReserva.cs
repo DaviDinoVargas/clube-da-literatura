@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubeDaLiteratura.Validadores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,19 @@ namespace ClubeDaLiteratura
         public Reserva[] SelecionarAtivas()
         {
             return reservas.Where(r => r != null && r.Status == "Ativa").ToArray();
+        }
+
+        public void RemoverExpiradas()
+        {
+            for (int i = 0; i < reservas.Length; i++)
+            {
+                if (reservas[i] != null && reservas[i].Status == "Ativa" &&
+                    Validador.ReservaExpirada(reservas[i]))
+                {
+                    reservas[i].Revista.StatusEmprestimo = "Disponível";
+                    reservas[i] = null;
+                }
+            }
         }
     }
 }

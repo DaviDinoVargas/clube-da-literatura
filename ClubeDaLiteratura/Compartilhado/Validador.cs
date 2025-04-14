@@ -110,6 +110,10 @@ namespace ClubeDaLiteratura.Validadores
 
             return false;
         }
+        public static bool ReservaExpirada(Reserva reserva)
+        {
+            return (DateTime.Today - reserva.DataReserva).TotalDays > 2;
+        }
     }
 
 }
