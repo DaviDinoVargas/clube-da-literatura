@@ -1,7 +1,7 @@
-﻿using ClubeDaLiteratura.ModuloAmigo;
+﻿using ClubeDaLiteratura;
+using ClubeDaLiteratura.ModuloAmigo;
 using ClubeDaLiteratura.ModuloCaixa;
 using ClubeDaLiteratura.ModuloEmprestimo;
-using ClubeDaLiteratura.ModuloMulta;
 using ClubeDaLiteratura.ModuloRevista;
 using System;
 
@@ -18,9 +18,9 @@ namespace ClubeDaLeitura
             RepositorioMulta repositorioMulta = new RepositorioMulta();
 
 
+            TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo, repositorioMulta);
             TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
-            TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo);
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
             TelaMulta telaMulta = new TelaMulta(repositorioMulta, repositorioAmigo);
 

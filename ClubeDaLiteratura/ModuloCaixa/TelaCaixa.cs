@@ -56,8 +56,10 @@ namespace ClubeDaLiteratura.ModuloCaixa
                 return;
             }
 
-            repositorio.Inserir(nova);
-            Notificador.ExibirMensagemSucesso("Caixa cadastrada!");
+            if(repositorio.Inserir(nova))
+                Notificador.ExibirMensagemSucesso("Caixa cadastrada!");
+            else
+                Notificador.ExibirMensagemErro("Erro");
         }
 
         public void Editar()

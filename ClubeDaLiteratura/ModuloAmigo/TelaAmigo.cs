@@ -9,7 +9,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
         private RepositorioAmigo repositorio;
         private RepositorioEmprestimo repositorioEmprestimo;
 
-        public TelaAmigo(RepositorioAmigo repositorio, RepositorioEmprestimo repositorioEmprestimo)
+        public TelaAmigo(RepositorioAmigo repositorio, RepositorioEmprestimo repositorioEmprestimo, RepositorioMulta repositorioMulta)
         {
             this.repositorio = repositorio;
             this.repositorioEmprestimo = repositorioEmprestimo;

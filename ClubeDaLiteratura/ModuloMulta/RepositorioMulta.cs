@@ -1,4 +1,6 @@
-﻿namespace ClubeDaLiteratura.ModuloMulta
+﻿using System.Linq;
+
+namespace ClubeDaLiteratura
 {
     public class RepositorioMulta
     {
@@ -8,6 +10,11 @@
         public void AdicionarMulta(Multa multa)
         {
             multas[contador++] = multa;
+        }
+
+        public Multa[] SelecionarTodas()
+        {
+            return multas;
         }
 
         public Multa[] SelecionarMultasPorAmigo(int idAmigo)
@@ -23,27 +30,20 @@
 
             return resultado;
         }
-        public Multa[] SelecionarTodas()
+
+        public bool ExisteMultaParaEmprestimo(int idEmprestimo)
         {
-            Multa[] resultado = new Multa[100];
-            int pos = 0;
-
-            foreach (var m in multas)
-            {
-                if (m != null)
-                    resultado[pos++] = m;
-            }
-
-            return resultado;
+            return multas.Any(m => m != null && m.Emprestimo.Id == idEmprestimo);
         }
-        public bool AmigoTemMultas(int idAmigo)
+
+        public Multa SelecionarPorId(int id)
         {
             foreach (var m in multas)
             {
-                if (m != null && m.Amigo.Id == idAmigo)
-                    return true;
+                if (m != null && m.Id == id)
+                    return m;
             }
-            return false;
+            return null;
         }
     }
 }

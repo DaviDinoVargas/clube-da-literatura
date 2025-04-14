@@ -2,7 +2,7 @@
 using ClubeDaLiteratura.ModuloEmprestimo;
 using System;
 
-namespace ClubeDaLiteratura.ModuloMulta
+namespace ClubeDaLiteratura
 {
     public class Multa
     {
@@ -12,6 +12,7 @@ namespace ClubeDaLiteratura.ModuloMulta
         public DateTime DataGeracao;
         public int DiasAtraso;
         public decimal Valor;
+        public bool Quitada;
 
         public Multa(int id, Amigo amigo, Emprestimo emprestimo, int diasAtraso)
         {
@@ -21,6 +22,7 @@ namespace ClubeDaLiteratura.ModuloMulta
             DataGeracao = DateTime.Now;
             DiasAtraso = diasAtraso;
             Valor = diasAtraso * 2.00m;
+            Quitada = false;
         }
     }
 }
