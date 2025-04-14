@@ -36,5 +36,14 @@
 
             return resultado;
         }
+        public bool AmigoTemMultas(int idAmigo)
+        {
+            foreach (var m in multas)
+            {
+                if (m != null && m.Amigo.Id == idAmigo)
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -87,6 +87,7 @@ namespace ClubeDaLiteratura.ModuloMulta
             int id = int.Parse(Console.ReadLine());
 
             var amigoSelecionado = repositorioAmigo.SelecionarPorId(id);
+
             if (amigoSelecionado == null)
             {
                 Notificador.ExibirMensagemErro("Amigo não encontrado.");
