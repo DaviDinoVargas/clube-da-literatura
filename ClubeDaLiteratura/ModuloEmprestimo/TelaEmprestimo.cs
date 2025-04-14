@@ -73,6 +73,12 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
                 return;
             }
 
+            if (Validador.AmigoTemEmprestimoEmAberto(idAmigo, repositorio))
+            {
+                Notificador.ExibirMensagemErro("Este amigo já possui um empréstimo em aberto. Não é possível registrar um novo empréstimo.");
+                return;
+            }
+
             VisualizarRevistas();
             Console.Write("ID da Revista: ");
             int idRevista = Validador.LerInteiro();

@@ -1,5 +1,6 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
 using ClubeDaLiteratura.ModuloCaixa;
+using ClubeDaLiteratura.ModuloEmprestimo;
 using ClubeDaLiteratura.ModuloRevista;
 
 namespace ClubeDaLiteratura.Validadores
@@ -65,6 +66,20 @@ namespace ClubeDaLiteratura.Validadores
             {
                 if (revista != null)
                     return true;
+            }
+
+            return false;
+        }
+        public static bool AmigoTemEmprestimoEmAberto(int idAmigo, RepositorioEmprestimo repositorioEmprestimo)
+        {
+            var emprestimos = repositorioEmprestimo.SelecionarTodos();
+
+            foreach (var emprestimo in emprestimos)
+            {
+                if (emprestimo != null && emprestimo.Amigo.Id == idAmigo && emprestimo.Situacao != "Devolvido")
+                {
+                    return true;
+                }
             }
 
             return false;
