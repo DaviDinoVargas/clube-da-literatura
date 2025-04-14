@@ -84,6 +84,20 @@ namespace ClubeDaLiteratura.Validadores
 
             return false;
         }
+        public static bool AmigoPodeSerExcluido(int idAmigo, RepositorioEmprestimo repositorioEmprestimo)
+        {
+            var emprestimos = repositorioEmprestimo.SelecionarTodos();
+
+            foreach (var emprestimo in emprestimos)
+            {
+                if (emprestimo != null && emprestimo.Amigo.Id == idAmigo && emprestimo.Situacao != "Devolvido")
+                {
+                    return false; 
+                }
+            }
+
+            return true; 
+        }
     }
 
 }

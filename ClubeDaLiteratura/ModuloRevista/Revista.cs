@@ -22,7 +22,7 @@ namespace ClubeDaLiteratura.ModuloRevista
             StatusEmprestimo = "Disponível";
         }
 
-        public string Validar()
+        public string Validar(RepositorioRevista repositorio)
         {
             if (string.IsNullOrWhiteSpace(Titulo))
                 return "O campo 'Título' é obrigatório.";
@@ -35,6 +35,12 @@ namespace ClubeDaLiteratura.ModuloRevista
 
             if (CaixaOrigem == null)
                 return "Você deve selecionar uma caixa.";
+
+            foreach (var revista in repositorio.SelecionarTodos())
+            {
+                if (revista != null && revista.Titulo == this.Titulo && revista.NumeroEdicao == this.NumeroEdicao)
+                    return "Já existe uma revista com este título e número de edição.";
+            }
 
             return "";
         }

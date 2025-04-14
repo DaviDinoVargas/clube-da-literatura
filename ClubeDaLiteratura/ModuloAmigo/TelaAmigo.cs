@@ -130,6 +130,12 @@ namespace ClubeDaLiteratura.ModuloAmigo
             Console.Write("\nDigite o ID do amigo que deseja excluir: ");
             int id = Validador.LerInteiro();
 
+            if (!Validador.AmigoPodeSerExcluido(id, repositorioEmprestimo))
+            {
+                Notificador.ExibirMensagemErro("Não é possível excluir este amigo, pois ele possui empréstimos em aberto.");
+                return;
+            }
+
             if (repositorio.ExcluirAmigo(id))
                 Notificador.ExibirMensagemSucesso("Amigo excluído com sucesso!");
             else

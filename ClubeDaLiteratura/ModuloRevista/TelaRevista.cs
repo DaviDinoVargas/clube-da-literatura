@@ -66,7 +66,7 @@ namespace ClubeDaLiteratura.ModuloRevista
             int id = GeradorId.GerarIdRevista();
             Revista revista = new Revista(id, titulo, edicao, ano, caixa);
 
-            string erro = revista.Validar();
+            string erro = revista.Validar(repositorio);
             if (erro != "")
             {
                 Notificador.ExibirMensagemErro(erro);
@@ -124,7 +124,7 @@ namespace ClubeDaLiteratura.ModuloRevista
                 StatusEmprestimo = atual.StatusEmprestimo
             };
 
-            string erro = atualizada.Validar();
+            string erro = atualizada.Validar(repositorio);
             if (erro != "")
             {
                 Notificador.ExibirMensagemErro(erro);
