@@ -1,6 +1,7 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
 using ClubeDaLiteratura.ModuloCaixa;
 using ClubeDaLiteratura.ModuloEmprestimo;
+using ClubeDaLiteratura.ModuloReserva;
 using ClubeDaLiteratura.ModuloRevista;
 
 namespace ClubeDaLiteratura.Validadores

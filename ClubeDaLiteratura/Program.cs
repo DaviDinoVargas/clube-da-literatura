@@ -2,6 +2,7 @@
 using ClubeDaLiteratura.ModuloAmigo;
 using ClubeDaLiteratura.ModuloCaixa;
 using ClubeDaLiteratura.ModuloEmprestimo;
+using ClubeDaLiteratura.ModuloReserva;
 using ClubeDaLiteratura.ModuloRevista;
 using System;
 

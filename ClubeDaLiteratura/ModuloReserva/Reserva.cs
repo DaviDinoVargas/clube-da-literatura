@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.ModuloReserva
 {
     public class Reserva
     {
