@@ -1,4 +1,6 @@
 ﻿using ClubeDaLiteratura.Compartilhado;
+using ClubeDaLiteratura.ModuloRevista;
+using ClubeDaLiteratura.Validadores;
 using System;
 
 namespace ClubeDaLiteratura.ModuloCaixa
@@ -6,10 +8,12 @@ namespace ClubeDaLiteratura.ModuloCaixa
     public class TelaCaixa
     {
         private RepositorioCaixa repositorio;
+        private RepositorioRevista repositorioRevista;
 
-        public TelaCaixa(RepositorioCaixa repositorio)
+        public TelaCaixa(RepositorioCaixa repositorio, RepositorioRevista repositorioRevista)
         {
             this.repositorio = repositorio;
+            this.repositorioRevista = repositorioRevista;
         }
 
         public void SubMenu()
@@ -131,6 +135,12 @@ namespace ClubeDaLiteratura.ModuloCaixa
 
             Console.Write("\nDigite o ID da caixa que deseja excluir: ");
             int id = LerInteiro();
+
+            if (!Validador.CaixaPodeSerExcluida(id, repositorioRevista))
+            {
+                Notificador.ExibirMensagemErro("Não é possível excluir esta caixa pois ela contém revistas.");
+                return;
+            }
 
             if (repositorio.Excluir(id))
                 Notificador.ExibirMensagemSucesso("Caixa excluída.");
