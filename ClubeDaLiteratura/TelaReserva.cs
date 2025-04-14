@@ -110,12 +110,27 @@ namespace ClubeDaLiteratura
             Visualizar();
 
             int id = Validador.LerInteiro("ID da reserva a cancelar: ");
-            bool removida = repositorio.Excluir(id);
+            var reserva = repositorio.SelecionarPorId(id);
 
-            if (removida)
-                Notificador.ExibirMensagemSucesso("Reserva cancelada.");
+            if (reserva != null)
+            {
+
+                bool removida = repositorio.Excluir(id);
+
+                if (removida)
+                {
+                    reserva.Revista.StatusEmprestimo = "Disponível";
+                    Notificador.ExibirMensagemSucesso("Reserva cancelada e revista disponível para empréstimo.");
+                }
+                else
+                {
+                    Notificador.ExibirMensagemErro("Reserva não encontrada.");
+                }
+            }
             else
+            {
                 Notificador.ExibirMensagemErro("Reserva não encontrada.");
+            }
         }
 
         private void Visualizar()
@@ -138,13 +153,13 @@ namespace ClubeDaLiteratura
             }
 
             Console.WriteLine("\nReservas Ativas:");
-            Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3}", "ID", "Amigo", "Revista", "Data");
+            Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3,-12} | {4,-12}", "ID", "Amigo", "Revista", "Início", "Fim");
 
             foreach (var r in reservas)
             {
-                Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3:dd/MM/yyyy}", r.Id, r.Amigo.Nome, r.Revista.Titulo, r.DataReserva);
+                Console.WriteLine("{0,-5} | {1,-20} | {2,-20} | {3:dd/MM/yyyy} | {4:dd/MM/yyyy}",
+                    r.Id, r.Amigo.Nome, r.Revista.Titulo, r.DataReserva, r.DataFimReserva);
             }
-
             Console.ReadLine();
         }
     }

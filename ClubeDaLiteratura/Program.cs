@@ -18,7 +18,6 @@ namespace ClubeDaLeitura
             RepositorioMulta repositorioMulta = new RepositorioMulta();
             RepositorioReserva repositorioReserva = new RepositorioReserva();
 
-
             TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo, repositorioMulta);
             TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa, repositorioRevista);
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);

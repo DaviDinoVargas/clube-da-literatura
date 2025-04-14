@@ -1,5 +1,4 @@
 ﻿using ClubeDaLiteratura.ModuloCaixa;
-using System;
 
 namespace ClubeDaLiteratura.ModuloRevista
 {
@@ -50,5 +49,13 @@ namespace ClubeDaLiteratura.ModuloRevista
         public void Devolver() => StatusEmprestimo = "Disponível";
 
         public void Reservar() => StatusEmprestimo = "Reservada";
+
+        public void RetirarReserva()
+        {
+            if (StatusEmprestimo != "Reservada")
+                throw new InvalidOperationException("A revista não está reservada, não é possível retirar a reserva.");
+
+            StatusEmprestimo = "Disponível";
+        }
     }
 }

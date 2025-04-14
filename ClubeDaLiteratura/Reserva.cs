@@ -14,6 +14,7 @@ namespace ClubeDaLiteratura
         public Amigo Amigo;
         public Revista Revista;
         public DateTime DataReserva;
+        public DateTime DataFimReserva;
         public string Status;
 
         public Reserva(int id, Amigo amigo, Revista revista)
@@ -22,6 +23,7 @@ namespace ClubeDaLiteratura
             Amigo = amigo;
             Revista = revista;
             DataReserva = DateTime.Today;
+            DataFimReserva = DataReserva.AddDays(2);
             Status = "Ativa";
         }
 

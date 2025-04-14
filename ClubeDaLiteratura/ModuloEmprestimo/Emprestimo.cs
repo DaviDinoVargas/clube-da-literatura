@@ -14,7 +14,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         public Amigo Amigo;
         public Revista Revista;
         public DateTime DataEmprestimo;
-        public string Situacao; // "Aberto" ou "Devolvido"
+        public string Situacao;
 
         public Emprestimo(int id, Amigo amigo, Revista revista, DateTime dataEmprestimo)
         {

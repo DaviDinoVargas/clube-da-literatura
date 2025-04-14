@@ -210,16 +210,22 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         {
             var lista = repositorio.SelecionarTodos();
 
-            Console.WriteLine("ID | Amigo             | Revista                 | Data      | Devolução | Situação");
-            Console.WriteLine("----------------------------------------------------------------------------------");
+            Console.WriteLine("ID | Amigo             | Revista                 | Data      | Devolução | Situação    | Status Revista |");
+            Console.WriteLine("---------------------------------------------------------------------------------------------");
 
             foreach (var e in lista)
             {
                 if (e == null) continue;
 
+                string statusRevista = e.Revista.StatusEmprestimo;
+
+                if (statusRevista == "Reservada")
+                    statusRevista = "Reservada";
+
                 string dt = e.DataEmprestimo.ToShortDateString();
                 string dtDev = e.ObterDataDevolucao().ToShortDateString();
-                Console.WriteLine($"{e.Id,-3} | {e.Amigo.Nome,-17} | {e.Revista.Titulo,-23} | {dt,-10} | {dtDev,-10} | {e.Situacao}");
+
+                Console.WriteLine($"{e.Id,-3} | {e.Amigo.Nome,-17} | {e.Revista.Titulo,-23} | {dt,-10} | {dtDev,-10} | {e.Situacao,-10} | {statusRevista}");
             }
 
             if (pausa) Console.ReadLine();
