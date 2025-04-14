@@ -27,6 +27,7 @@ namespace ClubeDaLiteratura.ModuloAmigo
                 Console.WriteLine("2 - Editar Amigo");
                 Console.WriteLine("3 - Excluir Amigo");
                 Console.WriteLine("4 - Visualizar Amigos");
+                Console.WriteLine("5 - Visualizar Emprestimo Amigo");
                 Console.WriteLine("S - Voltar ao menu principal");
                 Console.WriteLine("====================================");
                 Console.Write("Escolha uma opção: ");
