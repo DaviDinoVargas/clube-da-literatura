@@ -55,6 +55,12 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
                 return;
             }
 
+            if (!Validador.ExistemRevistasCadastradas(repositorioRevista))
+            {
+                Notificador.ExibirMensagemErro("Nenhuma revista cadastrada. Cadastre uma revista antes de registrar um empréstimo.");
+                return;
+            }
+
             VisualizarAmigos();
             Console.Write("ID do Amigo: ");
             int idAmigo = Validador.LerInteiro();
@@ -69,7 +75,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
 
             VisualizarRevistas();
             Console.Write("ID da Revista: ");
-            int idRevista = Validador.LerInteiro(Console.ReadLine());
+            int idRevista = Validador.LerInteiro();
             Revista revista = repositorioRevista.SelecionarPorId(idRevista);
 
             if (revista == null)
@@ -97,7 +103,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         {
             VisualizarTodos(false);
             Console.Write("Digite o ID do empréstimo que deseja editar: ");
-            int id = Validador.LerInteiro(Console.ReadLine());
+            int id = Validador.LerInteiro();
 
             Emprestimo emprestimoAtual = repositorio.SelecionarPorId(id);
 
@@ -180,7 +186,7 @@ namespace ClubeDaLiteratura.ModuloEmprestimo
         {
             VisualizarTodos(false);
             Console.Write("Digite o ID do empréstimo: ");
-            int id = Validador.LerInteiro(Console.ReadLine());
+            int id = Validador.LerInteiro();
 
             Emprestimo emp = repositorio.SelecionarPorId(id);
 

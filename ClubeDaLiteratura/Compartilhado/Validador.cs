@@ -57,6 +57,18 @@ namespace ClubeDaLiteratura.Validadores
 
             return false;
         }
+        public static bool ExistemRevistasCadastradas(RepositorioRevista repositorioRevista)
+        {
+            Revista[] revistas = repositorioRevista.SelecionarTodos();
+
+            foreach (var revista in revistas)
+            {
+                if (revista != null)
+                    return true;
+            }
+
+            return false;
+        }
     }
 
 }

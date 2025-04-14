@@ -5,15 +5,23 @@ public class RepositorioAmigo
     private Amigo[] amigos = new Amigo[100];
     private int contador = 0;
 
-    public bool AdicionarAmigo(Amigo novoAmigo)
+    public bool AdicionarAmigo(Amigo novo)
     {
-        foreach (Amigo a in amigos)
+        string nomeNovo = novo.Nome.Trim().ToLower();
+        string telefoneNovo = novo.Telefone.Trim();
+
+        foreach (var amigo in amigos)
         {
-            if (a != null && a.Validar() == novoAmigo.Validar())
+            if (amigo == null) continue;
+
+            string nomeExistente = amigo.Nome.Trim().ToLower();
+            string telefoneExistente = amigo.Telefone.Trim();
+
+            if (nomeExistente == nomeNovo && telefoneExistente == telefoneNovo)
                 return false;
         }
 
-        amigos[contador++] = novoAmigo;
+        amigos[contador++] = novo;
         return true;
     }
 
