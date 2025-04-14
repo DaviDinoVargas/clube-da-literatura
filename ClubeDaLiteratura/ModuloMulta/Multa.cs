@@ -2,7 +2,7 @@
 using ClubeDaLiteratura.ModuloEmprestimo;
 using System;
 
-namespace ClubeDaLiteratura
+namespace ClubeDaLiteratura.ModuloMulta
 {
     public class Multa
     {

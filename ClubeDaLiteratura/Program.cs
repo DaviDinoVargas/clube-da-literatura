@@ -1,6 +1,7 @@
 ﻿using ClubeDaLiteratura.ModuloAmigo;
 using ClubeDaLiteratura.ModuloCaixa;
 using ClubeDaLiteratura.ModuloEmprestimo;
+using ClubeDaLiteratura.ModuloMulta;
 using ClubeDaLiteratura.ModuloRevista;
 using System;
 
@@ -14,11 +15,14 @@ namespace ClubeDaLeitura
             RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
             RepositorioRevista repositorioRevista = new RepositorioRevista();
             RepositorioEmprestimo repositorioEmprestimo = new RepositorioEmprestimo();
+            RepositorioMulta repositorioMulta = new RepositorioMulta();
+
 
             TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
             TelaAmigo telaAmigo = new TelaAmigo(repositorioAmigo, repositorioEmprestimo);
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
+            TelaMulta telaMulta = new TelaMulta(repositorioMulta, repositorioAmigo);
 
             bool continuar = true;
 
@@ -30,6 +34,7 @@ namespace ClubeDaLeitura
                 Console.WriteLine("2. Gerenciar Caixas");
                 Console.WriteLine("3. Gerenciar Revistas");
                 Console.WriteLine("4. Gerenciar Empréstimos");
+                Console.WriteLine("5. Gerenciar Multas");
                 Console.WriteLine("0. Sair");
                 Console.Write("Escolha uma opção: ");
                 string opcao = Console.ReadLine();
@@ -47,6 +52,9 @@ namespace ClubeDaLeitura
                         break;
                     case "4":
                         telaEmprestimo.SubMenu();
+                        break;
+                    case "5":
+                        telaMulta.SubMenu();
                         break;
                     case "0":
                         continuar = false;

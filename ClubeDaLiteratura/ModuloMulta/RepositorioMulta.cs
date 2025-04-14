@@ -1,4 +1,4 @@
-﻿namespace ClubeDaLiteratura
+﻿namespace ClubeDaLiteratura.ModuloMulta
 {
     public class RepositorioMulta
     {
@@ -18,6 +18,19 @@
             foreach (var m in multas)
             {
                 if (m != null && m.Amigo.Id == idAmigo)
+                    resultado[pos++] = m;
+            }
+
+            return resultado;
+        }
+        public Multa[] SelecionarTodas()
+        {
+            Multa[] resultado = new Multa[100];
+            int pos = 0;
+
+            foreach (var m in multas)
+            {
+                if (m != null)
                     resultado[pos++] = m;
             }
 
