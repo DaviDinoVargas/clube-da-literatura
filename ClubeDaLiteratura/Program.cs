@@ -24,7 +24,7 @@ namespace ClubeDaLeitura
             TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
             TelaEmprestimo telaEmprestimo = new TelaEmprestimo(repositorioEmprestimo, repositorioAmigo, repositorioRevista);
             TelaMulta telaMulta = new TelaMulta(repositorioMulta, repositorioAmigo);
-            TelaReserva telaReserva = new TelaReserva(repositorioReserva, repositorioAmigo, repositorioRevista, repositorioMulta);
+            TelaReserva telaReserva = new TelaReserva(repositorioReserva, repositorioAmigo, repositorioRevista, repositorioMulta, repositorioEmprestimo);
 
             bool continuar = true;
 
